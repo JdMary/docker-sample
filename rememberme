@@ -1,0 +1,6 @@
+#start an already created container
+docker start <container-name>
+#interact with container with terminal
+#bash in this case container ues bash shell if alpine it is sh
+docker exec -it <container-name> bash
+
