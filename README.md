@@ -76,4 +76,14 @@ Use `docker commit` to save a container’s current state as a new image.
 ```
 docker commit [container_id] [image_name:tag]
 ```
+# Docker Swarm Setup
+
+This README contains essential commands for setting up and managing a Docker Swarm cluster.
+
+## 1. **Initialize Swarm**
+
+To initialize a new Swarm on a manager node, run the following command:
+
+```bash
+docker swarm init
 
