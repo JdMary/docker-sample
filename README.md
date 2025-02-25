@@ -59,7 +59,8 @@ WORKDIR /app
 > - **Use `ENTRYPOINT`** for default behavior, **`--entrypoint`** for runtime overrides. 
 
 
-```CMD ["echo", "Hello, World!"]
+```
+CMD ["echo", "Hello, World!"]
 ENTRYPOINT ["echo"]
 ```
 4. Run commands during build which creates a temporary container and executes the command and from it an image will be created
