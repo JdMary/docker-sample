@@ -1,0 +1,42 @@
+version: '3'
+services:
+  db2:
+    image: mysql:5.7
+    volumes:
+    #volume:point de montage(in container)
+      - db_data:/var/lib/mysql  # Stocke les données MySQL dans un volume persistant
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: somewordpress  # Mot de passe root
+      MYSQL_DATABASE: wordpress  # Nom de la base de données
+      MYSQL_USER: wordpress  # Nom de l'utilisateur
+      MYSQL_PASSWORD: wordpress  # Mot de passe de l'utilisateur
+    networks:
+      - my_network  # Attache le service à un réseau
+
+  wordpress2:
+    depends_on:
+      - db2 # S'assure que la base de données démarre avant WordPress
+    image: wordpress:latest
+    ports:
+      - "8082:80"  # Expose le port 80 du conteneur sur le port 8082 de l'hôte
+    restart: always
+    environment:
+      WORDPRESS_DB_HOST: db2:3306  # Nom de l'hote du serveur de la base de donnée hostname:port
+      WORDPRESS_DB_USER: wordpress # Nom de l'utilisateur
+      WORDPRESS_DB_PASSWORD: wordpress # Mot de passe de l'utilisateur
+      WORDPRESS_DB_NAME: wordpress  # Nom de la base de données
+    networks:
+      - my_network  # Attache le service à un réseau
+
+# Définition des volumes pour la persistance des données
+volumes:
+  db_data: {} # Stocke les données MySQL pour éviter leur perte
+  
+# Définition du réseau personnalisé
+networks:
+  my_network: {}  # Réseau pour connecter MySQL et WordPress
+  
+  
+  
+

@@ -1,0 +1,10 @@
+version: "3"
+services: 
+  mytest1:
+    image: hello-world
+    container_name: jdcontainer1
+  mytest2:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: jdcontainer2
